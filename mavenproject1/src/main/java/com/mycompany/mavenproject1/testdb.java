@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.mavenproject1;
 
 import java.sql.Connection;
@@ -11,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class testdb{
+public class testdb {
     public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
@@ -21,7 +16,7 @@ public class testdb{
             Class.forName("org.sqlite.JDBC");
 
             // Membuat koneksi ke database (akan membuat file database jika belum ada)
-            connection = DriverManager.getConnection("jdbc:sqlite:pertemuan12.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:p12.db");
 
             if (connection != null) {
                 System.out.println("Database connected successfully!");
@@ -29,19 +24,19 @@ public class testdb{
                 // Membuat statement
                 statement = connection.createStatement();
                 
-                // Membuat tabel_1 jika belum ada
-                String createTableSQL = "CREATE TABLE IF NOT EXISTS tab1 (id INTEGER PRIMARY KEY, name TEXT)";
+                // Membuat tabel tb1 jika belum ada
+                String createTableSQL = "CREATE TABLE IF NOT EXISTS tb1 (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
                 statement.executeUpdate(createTableSQL);
 
-                // Menambahkan data contoh ke tabel_1
-                String insertSQL = "INSERT INTO tab1 (id,name) VALUES (1, 'Heru'), (2,'Pratama'), (3,'Sample')";
+                // Menambahkan data contoh ke tabel tb1
+                String insertSQL = "INSERT INTO tb1 (name) VALUES ('Heru'), ('Pratama'), ('Sample')";
                 statement.executeUpdate(insertSQL);
 
-                // Query untuk mengambil data dari tabel_1
-                String selectSQL = "SELECT * FROM tabel_1";
+                // Query untuk mengambil data dari tabel tb1
+                String selectSQL = "SELECT * FROM tb1";
                 ResultSet rs = statement.executeQuery(selectSQL);
 
-                // Menampilkan data dari tabel_1
+                // Menampilkan data dari tabel tb1
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     String name = rs.getString("name");
