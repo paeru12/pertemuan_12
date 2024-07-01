@@ -28,10 +28,17 @@ public class testdb{
 
                 // Membuat statement
                 statement = connection.createStatement();
-               
+                
+                // Membuat tabel_1 jika belum ada
+                String createTableSQL = "CREATE TABLE IF NOT EXISTS tab1 (id INTEGER PRIMARY KEY, name TEXT)";
+                statement.executeUpdate(createTableSQL);
+
+                // Menambahkan data contoh ke tabel_1
+                String insertSQL = "INSERT INTO tab1 (id,name) VALUES (1, 'Heru'), (2,'Pratama'), (3,'Sample')";
+                statement.executeUpdate(insertSQL);
 
                 // Query untuk mengambil data dari tabel_1
-                String selectSQL = "SELECT * FROM tab1";
+                String selectSQL = "SELECT * FROM tabel_1";
                 ResultSet rs = statement.executeQuery(selectSQL);
 
                 // Menampilkan data dari tabel_1
